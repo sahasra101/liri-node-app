@@ -50,12 +50,15 @@ switch (userCommand) {
                 }
                 if (dataArr[0] == "spotify-this-song"){
                     userQuery = dataArr[1];
+                    userQuery = userQuery.substring(1, userQuery.length - 1);
                     checkSpotify(userQuery);
                 } else if (dataArr[0] == "movie-this"){
                     userQuery = dataArr[1];
+                    userQuery = userQuery.substring(1, userQuery.length - 1);
                     checkOmbd(userQuery);
                 } else if (dataArr[0] == "concert-this"){
                     userQuery = dataArr[1];
+                    userQuery = userQuery.substring(1, userQuery.length - 1);
                     checkBandsApi(userQuery);
                 } 
             });
@@ -65,7 +68,7 @@ switch (userCommand) {
 }
 
 function checkBandsApi() {
-    console.log("\nThe artist you picked was " + userQuery + "\n");
+    console.log("\nThe artist you picked was: " + userQuery + "\n");
     axios.get("https://rest.bandsintown.com/artists/" + userQuery.toLowerCase().replace(" ", "+") + "/events?app_id=codingbootcamp")
         .then(
             function (response) {
@@ -86,7 +89,7 @@ function checkBandsApi() {
 }
 
 function checkSpotify() {
-    console.log("\nThe song you picked was " + userQuery + "\n");
+    console.log("\nThe song you picked was: " + userQuery + "\n");
     spotify
         .search({ type: 'track', query: userQuery.toLowerCase().replace(" ", "+"), limit: 5})
         .then(function (response) {
@@ -108,7 +111,7 @@ function checkSpotify() {
 }
 
 function checkOmbd() {
-    console.log("\nThe movie you picked was " + userQuery + "\n");
+    console.log("\nThe movie you picked was: " + userQuery + "\n");
     axios.get("http://www.omdbapi.com/?t=" + userQuery.toLowerCase().replace(" ", "+") + "&y=&plot=short&apikey=trilogy")
         .then(
             function (response) {
