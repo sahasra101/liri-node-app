@@ -4,18 +4,18 @@ var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
 var moment = require("moment");
-
+var fs = require("fs");
 
 var userCommand = process.argv[2];
 // confirm that index 2 is the command
-console.log(userCommand);
+console.log("Your command is " + userCommand );
 var uQuery = [];
 for (i = 3; i < process.argv.length; i++) {
     uQuery.push(process.argv[i]);
 }
 userQuery = uQuery.join(" ");
 // confirm that index 3 and after are userQuery
-console.log(userQuery);
+//console.log(userQuery);
 
 switch (userCommand) {
     case "concert-this":
@@ -23,16 +23,33 @@ switch (userCommand) {
         break;
 
     case "spotify-this-song":
+        if (userQuery == "") {
+            userQuery = "The Sign Ace of Base";
+            checkSpotify(userQuery);
+        } else 
         checkSpotify(userQuery);
         break;
 
     case "movie-this":
+            if (userQuery == "") {
+                userQuery = "Mr.Nobody";
+                checkOmbd(userQuery);
+            } else
         checkOmbd(userQuery);
         break;
 
-    // case "do-what-it-says":
-    //     outputNum = parseFloat(num1) / parseFloat(num2);
-    //     break;
+    case "do-what-it-says":
+            fs.readFile("random.txt", "utf8", function(error, data) {
+                if (error) {
+                  return console.log(error);
+                } else {
+                console.log(data);
+                var dataArr = data.split(",");
+                console.log(dataArr);
+                }
+            });
+        break;
+
     default:
         console.log("Please select a valid command:\nconcert-this\nspotify-this-song\nmovie-this\ndo-what-it-says");
 }
@@ -61,7 +78,7 @@ function checkBandsApi() {
 function checkSpotify() {
     console.log("\nThe song you picked was " + userQuery + "\n");
     spotify
-        .search({ type: 'track', query: userQuery.toLowerCase().replace(" ", "+"), limit:5 })
+        .search({ type: 'track', query: userQuery.toLowerCase().replace(" ", "+"), limit: 5})
         .then(function (response) {
             if (response.tracks.items.length === 0) {
                 console.log(`No results found for your search of ${userQuery}`);
