@@ -45,11 +45,21 @@ switch (userCommand) {
                 } else {
                 console.log(data);
                 var dataArr = data.split(",");
-                console.log(dataArr);
+                console.log(dataArr[0]);
+                console.log(dataArr[1]);
                 }
+                if (dataArr[0] == "spotify-this-song"){
+                    userQuery = dataArr[1];
+                    checkSpotify(userQuery);
+                } else if (dataArr[0] == "movie-this"){
+                    userQuery = dataArr[1];
+                    checkOmbd(userQuery);
+                } else if (dataArr[0] == "concert-this"){
+                    userQuery = dataArr[1];
+                    checkBandsApi(userQuery);
+                } 
             });
         break;
-
     default:
         console.log("Please select a valid command:\nconcert-this\nspotify-this-song\nmovie-this\ndo-what-it-says");
 }
