@@ -16,6 +16,15 @@ Node JS app with command line functionality to retrieve data from Spotify, Band 
 * https://github.com/sahasra101/liri-node-app
 
 ## screenshots, gifs or videos of the app functioning
+![Capturing user variables: command and query](assets/images/codeCapturesCommandandQuery.png)
+
+![Switch function for different commands](assets/images/switchFunction.png)
+
+![Spotify the song "With or Without You"](assets/images/spotifyWithorWithoutYouU2.png)
+
+![Movie-this the movie "Avengers: Endgame"](assets/images/movie-thisAvengersEndgame.png)
+
+![Concert-this the band U2"](assets/images/concert-thisU2.png)
 
 ## Technologies used in this app:
 * javascript
