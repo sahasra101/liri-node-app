@@ -2,7 +2,6 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-var inquirer = require("inquirer");
 var axios = require("axios");
 var moment = require("moment");
 
@@ -39,7 +38,7 @@ switch (userCommand) {
 }
 
 function checkBandsApi() {
-    console.log(`\nThe artist you picked was ${userQuery}\n`);
+    console.log("\nThe artist you picked was " + userQuery + "\n");
     axios.get("https://rest.bandsintown.com/artists/" + userQuery.toLowerCase().replace(" ", "+") + "/events?app_id=codingbootcamp")
         .then(
             function (response) {
@@ -50,7 +49,7 @@ function checkBandsApi() {
                         console.log(`Venue Name: ${response.data[i].venue.name}`);
                         console.log(`Venue Location: ${response.data[i].venue.city}, ${response.data[i].venue.region}`);
                         console.log(`Date: ${moment(response.data[i].datetime).format("MM/DD/YYYY")}`);
-                        console.log("_____________________________________");
+                        console.log("\n");
                     }
                 }
             })
@@ -60,7 +59,7 @@ function checkBandsApi() {
 }
 
 function checkSpotify() {
-    console.log(`\nThe song you picked was ${userQuery}\n`);
+    console.log("\nThe song you picked was " + userQuery + "\n");
     spotify
         .search({ type: 'track', query: userQuery.toLowerCase().replace(" ", "+"), limit:5 })
         .then(function (response) {
@@ -72,7 +71,7 @@ function checkSpotify() {
                     console.log(`Song's name: ${response.tracks.items[j].name}`);
                     console.log(`Album name: ${response.tracks.items[j].album.name}`);
                     console.log(`Preview Link: ${response.tracks.items[j].album.artists[0].external_urls.spotify}`);
-                    console.log("__________________________________________________________");
+                    console.log("\n");
                 }
             }
         })
@@ -82,7 +81,7 @@ function checkSpotify() {
 }
 
 function checkOmbd() {
-    console.log(`The movie you picked was ${userQuery}\n`);
+    console.log("\nThe movie you picked was " + userQuery + "\n");
     axios.get("http://www.omdbapi.com/?t=" + userQuery.toLowerCase().replace(" ", "+") + "&y=&plot=short&apikey=trilogy")
         .then(
             function (response) {
