@@ -43,10 +43,10 @@ switch (userCommand) {
                 if (error) {
                   return console.log(error);
                 } else {
-                console.log(data);
+                // console.log(data);
                 var dataArr = data.split(",");
-                console.log(dataArr[0]);
-                console.log(dataArr[1]);
+                console.log(`\nThe do-what-it-says command is ${dataArr[0]}`);
+                // console.log(dataArr[1]);
                 }
                 if (dataArr[0] == "spotify-this-song"){
                     userQuery = dataArr[1];
@@ -64,22 +64,27 @@ switch (userCommand) {
             });
         break;
     default:
-        console.log("Please select a valid command:\nconcert-this\nspotify-this-song\nmovie-this\ndo-what-it-says");
+        console.log("\nPlease select a valid command:\nconcert-this\nspotify-this-song\nmovie-this\ndo-what-it-says");
 }
 
 function checkBandsApi() {
-    console.log("\nThe artist you picked was: " + userQuery + "\n");
-    axios.get("https://rest.bandsintown.com/artists/" + userQuery.toLowerCase().replace(" ", "+") + "/events?app_id=codingbootcamp")
+    console.log("\nThe artist you entered was: " + userQuery + "\n");
+    axios.get("https://rest.bandsintown.com/artists/" + userQuery.replace(" ", "+") + "/events?app_id=codingbootcamp")
         .then(
             function (response) {
                 if (response.data.length === 0) {
-                    console.log(`${userQuery} has no concerts found in the near future.`);
+                    console.log(userQuery+ " has no concerts in the near future according to bandintown.com.");
                 } else {
                     for (let i = 0; i < response.data.length; i++) {
-                        console.log(`Venue Name: ${response.data[i].venue.name}`);
-                        console.log(`Venue Location: ${response.data[i].venue.city}, ${response.data[i].venue.region}`);
-                        console.log(`Date: ${moment(response.data[i].datetime).format("MM/DD/YYYY")}`);
-                        console.log("\n");
+                        var concertData = "For band: "+userQuery+"\nVenue Name: "+response.data[i].venue.name+"\nVenue Location: "+response.data[i].venue.city+" "+response.data[i].venue.region+"\nDate: "+moment(response.data[i].datetime).format("MM/DD/YYYY")+"\n";
+                        console.log(concertData);
+                        fs.appendFile("log.txt", concertData, function(err) {
+                            if (err) {
+                              console.log(err);
+                            } else {
+                              console.log("log.txt was updated!");
+                            }
+                          });
                     }
                 }
             })
@@ -91,17 +96,21 @@ function checkBandsApi() {
 function checkSpotify() {
     console.log("\nThe song you picked was: " + userQuery + "\n");
     spotify
-        .search({ type: 'track', query: userQuery.toLowerCase().replace(" ", "+"), limit: 5})
+        .search({ type: 'track', query: userQuery.replace(" ", "+"), limit: 2})
         .then(function (response) {
             if (response.tracks.items.length === 0) {
                 console.log(`No results found for your search of ${userQuery}`);
             } else {
                 for (let j = 0; j < response.tracks.items.length; j++) {
-                    console.log(`Artist: ${response.tracks.items[j].album.artists[0].name}`);
-                    console.log(`Song's name: ${response.tracks.items[j].name}`);
-                    console.log(`Album name: ${response.tracks.items[j].album.name}`);
-                    console.log(`Preview Link: ${response.tracks.items[j].album.artists[0].external_urls.spotify}`);
-                    console.log("\n");
+                    var spotifyData = "Artist: "+response.tracks.items[j].album.artists[0].name+ "\nSong's name: "+response.tracks.items[j].name+"\nAlbum name: "+response.tracks.items[j].album.name+"\nPreview Link: "+response.tracks.items[j].album.artists[0].external_urls.spotify+"\n";
+                    console.log(spotifyData);
+                    fs.appendFile("log.txt", spotifyData, function(err) {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          console.log("log.txt was updated!");
+                        }
+                      });
                 }
             }
         })
@@ -115,17 +124,19 @@ function checkOmbd() {
     axios.get("http://www.omdbapi.com/?t=" + userQuery.toLowerCase().replace(" ", "+") + "&y=&plot=short&apikey=trilogy")
         .then(
             function (response) {
-                if (!response.data.Title) {
-                    console.log(`No results found for your search of ${userQuery}`);
+                if (! response.data.Title) {
+                    console.log("No results found for your search of " +userQuery);
+
                 } else {
-                    console.log(`\nTitle: ${response.data.Title}`);
-                    console.log(`Year: ${response.data.Year}`);
-                    console.log(`IMDB Rating: ${response.data.imdbRating}`);
-                    console.log(`Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}`);
-                    console.log(`Country of production: ${response.data.Country}`);
-                    console.log(`Language: ${response.data.Language}`);
-                    console.log(`Plot: ${response.data.Plot}`);
-                    console.log(`Actors: ${response.data.Actors}`);
+                    var movieData = "\nMovie title: "+response.data.Title + "\nYear: "+response.data.Year + "\nIMDB Rating: "+response.data.imdbRating+ "\nRotten Tomatoes Rating: "+response.data.Ratings[1].Value+ "\nCountry of production: "+response.data.Country+"\nLanguage: "+response.data.Language+"\nPlot: "+response.data.Plot+"\nActors: "+response.data.Actors;
+                    console.log(movieData);
+                    fs.appendFile("log.txt", movieData, function(err) {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          console.log("log.txt was updated!");
+                        }
+                      });
                 }
             })
         .catch(function (error) {
