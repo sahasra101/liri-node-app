@@ -8,7 +8,7 @@ var fs = require("fs");
 
 var userCommand = process.argv[2];
 // confirm that index 2 is the command
-console.log("Your command is " + userCommand );
+console.log("\nYour command is " + userCommand );
 var uQuery = [];
 for (i = 3; i < process.argv.length; i++) {
     uQuery.push(process.argv[i]);
@@ -68,7 +68,7 @@ switch (userCommand) {
 }
 
 function checkBandsApi() {
-    console.log("\nThe artist you entered was: " + userQuery + "\n");
+    console.log("The artist you entered was: " + userQuery + "\n");
     axios.get("https://rest.bandsintown.com/artists/" + userQuery.replace(" ", "+") + "/events?app_id=codingbootcamp")
         .then(
             function (response) {
@@ -82,7 +82,7 @@ function checkBandsApi() {
                             if (err) {
                               console.log(err);
                             } else {
-                              console.log("log.txt was updated!");
+                              console.log("\nlog.txt was updated!");
                             }
                           });
                     }
@@ -94,7 +94,7 @@ function checkBandsApi() {
 }
 
 function checkSpotify() {
-    console.log("\nThe song you picked was: " + userQuery + "\n");
+    console.log("The song you picked was: " + userQuery + "\n");
     spotify
         .search({ type: 'track', query: userQuery.replace(" ", "+"), limit: 2})
         .then(function (response) {
@@ -108,7 +108,7 @@ function checkSpotify() {
                         if (err) {
                           console.log(err);
                         } else {
-                          console.log("log.txt was updated!");
+                          console.log("\nlog.txt was updated!");
                         }
                       });
                 }
@@ -120,7 +120,7 @@ function checkSpotify() {
 }
 
 function checkOmbd() {
-    console.log("\nThe movie you picked was: " + userQuery + "\n");
+    console.log("The movie you picked was: " + userQuery + "\n");
     axios.get("http://www.omdbapi.com/?t=" + userQuery.toLowerCase().replace(" ", "+") + "&y=&plot=short&apikey=trilogy")
         .then(
             function (response) {
@@ -134,7 +134,7 @@ function checkOmbd() {
                         if (err) {
                           console.log(err);
                         } else {
-                          console.log("log.txt was updated!");
+                          console.log("\nlog.txt was updated!");
                         }
                       });
                 }

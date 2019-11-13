@@ -82,3 +82,44 @@ For band: U2
 Venue Name: D.Y. Patil Stadium
 Venue Location: Mumbai 
 Date: 12/15/2019
+
+Movie title: Interstellar
+Year: 2014
+IMDB Rating: 8.6
+Rotten Tomatoes Rating: 72%
+Country of production: USA, UK, Canada
+Language: English
+Plot: A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+Actors: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+Movie title: Interstellar
+Year: 2014
+IMDB Rating: 8.6
+Rotten Tomatoes Rating: 72%
+Country of production: USA, UK, Canada
+Language: English
+Plot: A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+Actors: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+Movie title: Interstellar
+Year: 2014
+IMDB Rating: 8.6
+Rotten Tomatoes Rating: 72%
+Country of production: USA, UK, Canada
+Language: English
+Plot: A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+Actors: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+Movie title: Interstellar
+Year: 2014
+IMDB Rating: 8.6
+Rotten Tomatoes Rating: 72%
+Country of production: USA, UK, Canada
+Language: English
+Plot: A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+Actors: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+Movie title: Interstellar
+Year: 2014
+IMDB Rating: 8.6
+Rotten Tomatoes Rating: 72%
+Country of production: USA, UK, Canada
+Language: English
+Plot: A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+Actors: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
